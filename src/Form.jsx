@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import Input from './Input';
+
 const Form = ({addContact}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -22,29 +24,33 @@ const Form = ({addContact}) => {
 
   return (
     <form action="/">
-      <input
+      <Input
         type="text"
         placeholder="First name"
         name="name"
         value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
+        changeName={(value) => setFirstName(value)}
       />
-      <input
+
+      <Input
         type="text"
         placeholder="Last name"
         name="surname"
         value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
+        changeName={(value) => setLastName(value)}
       />
-      <input
+
+      <Input
         type="email"
         placeholder="Email"
         name="email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        changeName={(value) => setEmail(value)}
       />
+
       <button
         type="submit"
+        disabled={!firstName || !lastName || !email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)}
         onClick={formHandler}
       >
         Save contact
