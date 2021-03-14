@@ -1,14 +1,19 @@
-import { BrowserRouter as Router } from 'react-router-dom';
-
-import Nav from './components/Nav/Nav';
+import { useState } from 'react';
+import Form from './Form';
+import Table from './Table';
 
 function App() {
+  const [contacts, setContacts] = useState([]);
+  const addContact = (newContact) => {
+    setContacts(prevContact => [...prevContact, newContact]
+      .sort((a, b) => a.name.localeCompare(b.name)));
+  };
+
   return (
-    <Router>
-      <div className="App">
-        <Nav />
-      </div>
-    </Router>
+    <div className="App">
+      <Form addContact={addContact} />
+      <Table contacts={contacts} />
+    </div>
   );
 }
 
