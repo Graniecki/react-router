@@ -1,18 +1,9 @@
-import { useState } from 'react';
-import Form from './Form';
-import Table from './Table';
+import Counter from './Counter';
 
 function App() {
-  const [contacts, setContacts] = useState([]);
-  const addContact = (newContact) => {
-    setContacts(prevContact => [...prevContact, newContact]
-      .sort((a, b) => a.name.localeCompare(b.name)));
-  };
-
   return (
     <div className="App">
-      <Form addContact={addContact} />
-      <Table contacts={contacts} />
+      <Counter />
     </div>
   );
 }
